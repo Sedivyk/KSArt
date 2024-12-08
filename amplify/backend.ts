@@ -1,4 +1,4 @@
-import { defineBackend } from "@aws-amplify/backend";
+dEventimport { defineBackend } from "@aws-amplify/backend";
 import { Stack } from "aws-cdk-lib";
 import {
   AuthorizationType,
@@ -48,7 +48,7 @@ const itemsPath = myRestApi.root.addResource("items", {
 });
 
 // create a new resource path with IAM authorization
-const itemsPath = myRestApi.root.addResource("send-event", {
+const sendEventPath = myRestApi.root.addResource("send-event", {
   defaultMethodOptions: {
     authorizationType: AuthorizationType.IAM,
   },
