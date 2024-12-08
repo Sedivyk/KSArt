@@ -21,7 +21,7 @@ function App() {
   return (
     <main>
       <h1>KS ART</h1>
-      <button onClick={createTodo}>Send event/button>
+      <button onClick={createTodo}>Send event</button>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.content}</li>
