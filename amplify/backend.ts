@@ -9,7 +9,7 @@ import {
 } from "aws-cdk-lib/aws-apigateway";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { myApiFunction } from "./functions/api-functions/resources";
-import { ksSendEventFunction  } from "./functions/send-event-functions/resources";
+import { ksSendEventFunction  } from "./functions/send-event-function/resource";
 import { auth } from "./auth/resource";
 import { data } from "./data/resource";
 
