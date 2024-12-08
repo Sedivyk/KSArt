@@ -8,7 +8,8 @@ import {
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { myApiFunction, ksSendEventFunction  } from "./functions/api-functions/resources";
+import { myApiFunction } from "./functions/api-functions/resources";
+import { ksSendEventFunction  } from "./functions/send-event-functions/resources";
 import { auth } from "./auth/resource";
 import { data } from "./data/resource";
 
