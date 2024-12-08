@@ -1,4 +1,4 @@
-dEventimport { defineBackend } from "@aws-amplify/backend";
+import { defineBackend } from "@aws-amplify/backend";
 import { Stack } from "aws-cdk-lib";
 import {
   AuthorizationType,
@@ -8,7 +8,7 @@ import {
   RestApi,
 } from "aws-cdk-lib/aws-apigateway";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { myApiFunction } from "./functions/api-functions/resources";
+import { myApiFunction, ksSendEventFunction  } from "./functions/api-functions/resources";
 import { auth } from "./auth/resource";
 import { data } from "./data/resource";
 
@@ -40,6 +40,9 @@ const lambdaIntegration = new LambdaIntegration(
   backend.myApiFunction.resources.lambda
 );
 
+const sendEventLambdaIntegration = new LambdaIntegration(
+  backend.ksSendEventFunction.resources.lambda
+);
 // create a new resource path with IAM authorization
 const itemsPath = myRestApi.root.addResource("items", {
   defaultMethodOptions: {
@@ -59,6 +62,14 @@ itemsPath.addMethod("GET", lambdaIntegration);
 itemsPath.addMethod("POST", lambdaIntegration);
 itemsPath.addMethod("DELETE", lambdaIntegration);
 itemsPath.addMethod("PUT", lambdaIntegration);
+
+// add methods you would like to create to the resource path
+sendEventPath.addMethod("POST", sendEventLambdaIntegration);
+// add a proxy resource path to the API
+sendEventPath.addProxy({
+  anyMethod: true,
+  defaultIntegration: sendEventLambdaIntegration,
+});
 
 // add a proxy resource path to the API
 itemsPath.addProxy({
