@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+dimport { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 
@@ -14,13 +14,14 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    //client.models.Todo.create({ content: window.prompt("Todo content") });
+    
   }
 
   return (
     <main>
       <h1>KS ART</h1>
-      <button onClick={createTodo}>+ new</button>
+      <button onClick={createTodo}>Send event/button>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.content}</li>
