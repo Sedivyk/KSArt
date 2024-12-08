@@ -17,6 +17,7 @@ const backend = defineBackend({
   auth,
   data,
   myApiFunction,
+  ksSendEventFunction,
 });
 
 // create a new API stack
