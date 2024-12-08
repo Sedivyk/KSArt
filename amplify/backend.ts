@@ -47,6 +47,13 @@ const itemsPath = myRestApi.root.addResource("items", {
   },
 });
 
+// create a new resource path with IAM authorization
+const itemsPath = myRestApi.root.addResource("send-event", {
+  defaultMethodOptions: {
+    authorizationType: AuthorizationType.IAM,
+  },
+});
+
 // add methods you would like to create to the resource path
 itemsPath.addMethod("GET", lambdaIntegration);
 itemsPath.addMethod("POST", lambdaIntegration);
@@ -80,6 +87,7 @@ const apiRestPolicy = new Policy(apiStack, "RestApiPolicy", {
         `${myRestApi.arnForExecuteApi("*", "/items", "dev")}`,
         `${myRestApi.arnForExecuteApi("*", "/items/*", "dev")}`,
         `${myRestApi.arnForExecuteApi("*", "/cognito-auth-path", "dev")}`,
+        `${myRestApi.arnForExecuteApi("*", "/send-event", "dev")}`,
       ],
     }),
   ],
