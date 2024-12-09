@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Flex,
   Heading,
@@ -10,7 +10,7 @@ import {
   Link,
   View,
 } from "@aws-amplify/ui-react";
-import { RiFeedbackLine } from "react-icons/ri";
+// import { RiFeedbackLine } from "react-icons/ri";
 import { Amplify } from "aws-amplify";
 
 import outputs from '../amplify_outputs.json';
