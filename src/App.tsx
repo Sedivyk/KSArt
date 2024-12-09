@@ -50,9 +50,9 @@ function App() {
       wrap="nowrap"
       gap="1rem"
     >
-      <Text fontSize="6em">
+{/*       <Text fontSize="6em">
         <Icon ariaLabel="Feedback" as={RiFeedbackLine} />
-      </Text>
+      </Text> */}
       <Heading level="4">We value your feedback!</Heading>
       {(() => {
         switch (feedbackState) {
