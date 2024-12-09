@@ -12,6 +12,40 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+
+  /*
+    Creates a database table for 'Feedback' to store the feedbacks
+    submitted through our web application.
+  */
+  Feedback: a
+    .model({
+      id: a.id(),
+      content: a.string(),
+      sentiment: a.string()
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
+  }),
+  /*
+    Create a new 'Execution' type that will be returned by our call
+    to the Step Functions workflow.
+  */
+  Execution: a.customType({
+    name: a.string(),
+    status: a.string(),
+    input: a.string(),
+    executionArn: a.string(),
+    startDate: a.string(),
+    stopDate: a.string(),
+    output: a.string(),
+  }),
+  /*
+    Mutation that triggers the synchronous execution of our Step
+    Functions workflow.
+  */
+  executeStateMachine: a
+    .mutation()
+    .arguments({input: a.string()})
+    .returns(a.ref('Execution')), 
 });
 
 export type Schema = ClientSchema<typeof schema>;
