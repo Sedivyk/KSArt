@@ -12,6 +12,7 @@ import { myApiFunction } from "./functions/api-functions/resources";
 import { ksSendEventFunction  } from "./functions/send-event-function/resource";
 import { auth } from "./auth/resource";
 import { data } from "./data/resource";
+import { CustomResources } from "./custom/customResources/resource";
 
 const backend = defineBackend({
   auth,
@@ -114,6 +115,18 @@ backend.auth.resources.unauthenticatedUserIamRole.attachInlinePolicy(
   apiRestPolicy
 );
 
+new CustomResources(
+    backend.createStack('customResources'),
+    'customResources',
+    {
+        data: {
+            apiId: backend.data.apiId,
+        },
+        notification: {
+            emailAddress: "sedivyk@gmail.com" // Fill in your email address
+        }
+    }
+);
 // add outputs to the configuration file
 backend.addOutput({
   custom: {
