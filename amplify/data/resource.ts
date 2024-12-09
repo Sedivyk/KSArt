@@ -24,7 +24,7 @@ const schema = a.schema({
       sentiment: a.string()
     })
     .authorization((allow) => [allow.publicApiKey()]),
-  }),
+
   /*
     Create a new 'Execution' type that will be returned by our call
     to the Step Functions workflow.
